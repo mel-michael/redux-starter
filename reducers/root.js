@@ -1,5 +1,8 @@
 import { combineReducers } from 'redux';
 
+import { recipesReducer } from './recipes';
+import { ingredientsReducer } from './ingredients';
+
 // Method 1: Combine all reducer functions
 export const reducer = (state, action) => {
   switch (action.type) {
@@ -24,7 +27,7 @@ export const reducer = (state, action) => {
 }
 
 // Method 2: Separate each reducer function
-export const recipesReducer = (recipes = [], action) => {
+export const recipesReducer2 = (recipes = [], action) => {
   switch (action.type) {
     case 'ADD_RECIPE':
       return recipes.concat({ name: action.name });
@@ -32,7 +35,7 @@ export const recipesReducer = (recipes = [], action) => {
   return recipes;
 }
 
-export const ingredientsReducer = (ingredients = [], action) => {
+export const ingredientsReducer2 = (ingredients = [], action) => {
   switch(action.type) {
     case 'ADD_INGREDIENT':
       const newIngredient = {
