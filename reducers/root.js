@@ -1,3 +1,5 @@
+import { combineReducers } from 'redux';
+
 // Method 1: Combine all reducer functions
 export const reducer = (state, action) => {
   switch (action.type) {
@@ -30,7 +32,7 @@ export const recipesReducer = (recipes = [], action) => {
   return recipes;
 }
 
-export const ingredientsReducer = (ingredients, action) => {
+export const ingredientsReducer = (ingredients = [], action) => {
   switch(action.type) {
     case 'ADD_INGREDIENT':
       const newIngredient = {
@@ -49,3 +51,9 @@ export const rootReducer = (state, action) => {
     ingredients: ingredientsReducer(state.ingredients, action)
   });
 };
+
+// Method 3: Use Redux combine reducers
+export default combineReducers({
+  recipes: recipesReducer,
+  ingredients: ingredientsReducer
+});
