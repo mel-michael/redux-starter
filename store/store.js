@@ -1,6 +1,7 @@
 import { createStore } from 'redux';
 
-import { reducer } from '../reducers/root';
+// import { reducer } from '../reducers/root'; // Method 1
+import { rootReducer } from '../reducers/root'; // Method 2
 
 const initialState = {
   recipes: [
@@ -17,4 +18,4 @@ const initialState = {
   ]
 };
 
-export const store = createStore(reducer, initialState);
+export const store = createStore(rootReducer, initialState);
