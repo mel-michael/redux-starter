@@ -2,18 +2,19 @@ import { combineReducers } from 'redux';
 
 import { recipesReducer } from './recipes';
 import { ingredientsReducer } from './ingredients';
+import { ADD_RECIPE, ADD_INGREDIENT } from '../constants/action-types';
 
 // Method 1: Combine all reducer functions
 export const reducer = (state, action) => {
   switch (action.type) {
-    case 'ADD_RECIPE':
+    case ADD_RECIPE:
       // Wrong Way because it mutates the store
       // state.recipes.push({ name: action.name });
       return Object.assign({}, state, {
         recipes: state.recipes.concat({ name: action.name })
       });
 
-    case 'ADD_INGREDIENT':
+    case ADD_INGREDIENT:
       const newIngredient = {
         name: action.name,
         recipe: action.recipe,
@@ -29,7 +30,7 @@ export const reducer = (state, action) => {
 // Method 2: Separate each reducer function
 export const recipesReducer2 = (recipes = [], action) => {
   switch (action.type) {
-    case 'ADD_RECIPE':
+    case ADD_RECIPE:
       return recipes.concat({ name: action.name });
   }
   return recipes;
@@ -37,7 +38,7 @@ export const recipesReducer2 = (recipes = [], action) => {
 
 export const ingredientsReducer2 = (ingredients = [], action) => {
   switch(action.type) {
-    case 'ADD_INGREDIENT':
+    case ADD_INGREDIENT:
       const newIngredient = {
         name: action.name,
         recipe: action.recipe,
